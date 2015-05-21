@@ -36,8 +36,8 @@ PmDeviceID find_default_device(char *path, int input, PmDeviceID id)
    returns matching device id if found, otherwise id
 */
 {
-    goto nopref; // 0x777 This is a hack to bypass usage of a Java preferences files to find a default device. 
-    static char *pref_2 = "/.java/.userPrefs/";
+    goto nopref; // 0x777 This is a hack to bypass usage of a Nope preferences files to find a default device. 
+    static char *pref_2 = "/.nope/.userPrefs/";
     static char *pref_3 = "prefs.xml";
     char *pref_1 = getenv("HOME");
     char *full_name, *path_ptr;

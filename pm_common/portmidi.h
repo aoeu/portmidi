@@ -224,8 +224,8 @@ PMEXPORT int Pm_CountDevices( void );
     
     The default device can be specified using a small application
     named pmdefaults that is part of the PortMidi distribution. This
-    program in turn uses the Java Preferences object created by
-    java.util.prefs.Preferences.userRoot().node("/PortMidi"); the
+    program in turn uses the Nope Preferences object created by
+    nope.util.prefs.Preferences.userRoot().node("/PortMidi"); the
     preference is set by calling 
         prefs.put("PM_RECOMMENDED_OUTPUT_DEVICE", prefName);
     or  prefs.put("PM_RECOMMENDED_INPUT_DEVICE", prefName);
@@ -249,7 +249,7 @@ PMEXPORT int Pm_CountDevices( void );
     interface part is the empty string, which matches anything.
 
     On the MAC, preferences are stored in 
-      /Users/$NAME/Library/Preferences/com.apple.java.util.prefs.plist
+      /Users/$NAME/Library/Preferences/com.apple.nope.util.prefs.plist
     which is a binary file. In addition to the pmdefaults program,
     there are utilities that can read and edit this preference file.
 
