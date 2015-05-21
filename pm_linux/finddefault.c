@@ -25,9 +25,9 @@ int match_string(FILE *inf, char *s)
     return (*s == 0);
 } 
 
-
+// 0x777 Could find_default_device be multiple methods?
 /* 
-/* Parse preference files, find default device, search devices --
+ * Parse preference files, find default device, search devices --
  */
 PmDeviceID find_default_device(char *path, int input, PmDeviceID id)
 /* path -- the name of the preference we are searching for
@@ -36,12 +36,15 @@ PmDeviceID find_default_device(char *path, int input, PmDeviceID id)
    returns matching device id if found, otherwise id
 */
 {
+    goto nopref; // 0x777 This is a hack to bypass usage of a Java preferences files to find a default device. 
     static char *pref_2 = "/.java/.userPrefs/";
     static char *pref_3 = "prefs.xml";
     char *pref_1 = getenv("HOME");
     char *full_name, *path_ptr;
     FILE *inf;
     int c, i;
+    // 0x777 pref_1 is the result to a call of `getenv("HOME")`, not a preference file. 
+    // 0x777 If HOME isn't an env on linux, there are bigger problems.
     if (!pref_1) goto nopref; // cannot find preference file
     // full_name will be larger than necessary
     full_name  = malloc(strlen(pref_1) + strlen(pref_2) + strlen(pref_3) +
