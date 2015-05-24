@@ -4,7 +4,6 @@ Roger Dannenberg
 
 Contents:
         To make PortMidi
-        The pmdefaults program
         Setting LD_LIBRARY_PATH
         A note about amd64
         Using autoconf
@@ -12,23 +11,18 @@ Contents:
         Changelog
 
 
-To make PortMidi, you need cmake and the Java SDK.
+To make PortMidi, you need cmake and cmake-curses-gui (ccmake),
+and the build-essential package (on Debian-based systems).
 Go back up to the portmidi directory and type:
 
 ccmake .
 
-Type 'c' (configure) and then 'g' (generate). You may have
-to manually set JAVA_INCLUDE_PATH and JAVA_JVM_LIBRARY
-by typing 't' (toggle to advanced mode) and using the 
-editor to change the fields. You can find possible values
-for JAVA_INCLUDE_PATH by typing "locate jni.h", and for
-JAVA_JVM_LIBRARY by typing locate libjvm".
+Type 'c' (configure) and then 'g' (generate). 
 
-You also need JAVA_INCLUDE_PATH2, but this will normally
-be set automatically after you set JAVA_INCLUDE_PATH and
-run "configure" (type "c" to ccmake). Normally,
-JAVA_INCLUDE_PATH2 is the linux subdirectory within
-JAVA_INCLUDE_PATH.
+If a warning about "target name test" appears, it may be 
+bypassed by providing additional development flags:
+
+ccmake . -Wno-dev
 
 Notice that the CMAKE_BUILD_TYPE can be Debug or Release.
 Stick with Release if you are not debugging.
@@ -48,29 +42,16 @@ check for error codes and handle them, but for quick,
 non-critical projects, the automatic "print and die" 
 handling can save some work.)
 
-THE pmdefaults PROGRAM
-
-You should install pmdefaults. It provides a graphical interface
-for selecting default MIDI IN and OUT devices so that you don't
-have to build device selection interfaces into all your programs
-and so users have a single place to set a preference.
-
-Follow the instructions above to run ccmake, making sure that
-CMAKE_BUILD_TYPE is Release. Run make as described above. Then:
-
 sudo make install
 
-This will install PortMidi libraries and the pmdefault program.
+This will install PortMidi libraries.
 You must alos have the environment variable LD_LIBRARY_PATH set
 to include /usr/local/lib (where libpmjni.so is installed).
 
-Now, you can run pmdefault.
-
-
 SETTING LD_LIBRARY_PATH
 
-pmdefaults will not work unless LD_LIBRARY_PATH includes a 
-directory (normally /usr/local/lib) containing libpmjni.so,
+Running programs compiled against portmidi will not work unless LD_LIBRARY_PATH
+includes a directory (normally /usr/local/lib) containing libpmjni.so,
 installed as described above.
 
 To set LD_LIBRARY_PATH, you might want to add this to your
